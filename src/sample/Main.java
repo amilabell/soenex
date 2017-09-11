@@ -15,23 +15,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("Hello World!");
-        Button btn = new Button();
-        btn.setText("Say 'Hello World' OR exit the pr0gramm 50/50");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("Super precise package cost calculator");
 
-            @Override
-            public void handle(ActionEvent event) {
-                if(Math.random() < 0.5) {
-                    System.exit(0);
-                }else{
-                    System.out.println("hello world");
-                }
-            }
-        });
-
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
