@@ -100,7 +100,7 @@
                </items>
             </SplitPane>
             <Button layoutX="220.0" layoutY="470.0" mnemonicParsing="false" onAction="#calculatePackage" text="calculate" />
-            <Button layoutX="578.0" layoutY="470.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="95.0" text="reset" />
+            <Button layoutX="578.0" layoutY="454.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="95.0" text="reset" />
             <ProgressBar layoutX="350.0" layoutY="477.0" prefWidth="200.0" progress="0.0" />
          </children></AnchorPane>
    </children>
