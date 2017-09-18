@@ -72,9 +72,6 @@ public class Controller {
 
     }
 
-    private void checkTxfForInt(){
-    }
-
     private double calcShippingCosts (int length, int height, int width, int weight){
         int size[] = {length, height, width};
         int pckS1[] = {300, 300, 150};
