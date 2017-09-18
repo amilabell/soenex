@@ -8,27 +8,37 @@ public class Packet {
     private int width;
     private int height;
     private int length;
-    private int weigth;
-    private int price;
+    private int weight;
+    private double price;
 
-    Packet(int width, int height, int length, int weigth, int price){
+   public Packet(int width, int height, int length, int weight, int price){
         this.width = width;
         this.height = height;
         this.length = length;
-        this.weigth = weigth;
+        this.weight = weight;
+        this.price = price;
+    }
+    public Packet(int width, int height, int length, int weight){
+        this.width = width;
+        this.height = height;
+        this.length = length;
+        this.weight = weight;
+    }
+
+    public void setPrice(int price){
         this.price = price;
     }
 
-    public int getWeigth(){
-        return weigth;
+    public int getWeight(){
+        return weight;
     }
 
     public int getPrice(){
-        return price;
+        return (int) price;
     }
 
     public int[] getPackageDiameters(){
-        int ret[] = {width, height, length};
+        int ret[] = {width, height, length, weight};
         return ret;
     }
 
