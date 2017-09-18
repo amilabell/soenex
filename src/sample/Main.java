@@ -18,10 +18,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Super precise package cost calculator");
 
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 900, 550));
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);
