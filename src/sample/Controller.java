@@ -33,6 +33,50 @@ public class Controller {
         st.setToX(100);
         st.play();
     }
+    @FXML
+    private void reset() {
+        txfInptMesA.clear();
+        txfInptMesB.clear();
+        txfInptMesC.clear();
+        txfInptMesW.clear();
+        lblOutpPrice.setText("€€€");
+    }
+
+    @FXML
+    private void addPackage(){
+        int sMesAcm, sMesBcm, sMesCcm, sMesWcm, supGesA,supGesB,supGesC,supGesW;
+
+        try{
+            sMesAcm = (int) Integer.parseUnsignedInt(txfSupPA.getText());
+            sMesBcm = (int) Integer.parseUnsignedInt(txfSupPB.getText());
+            sMesCcm = (int) Integer.parseUnsignedInt(txfSupPC.getText());
+            sMesWcm = (int) Integer.parseUnsignedInt(txfSupPW.getText());
+
+        }catch (Exception e){
+            sMesAcm = sMesBcm = sMesCcm = sMesWcm = 99999999;
+
+        }
+
+
+        supGesA = sMesAcm + (int) Integer.parseUnsignedInt(txfInptMesA.getText());
+        supGesB = sMesBcm + (int) Integer.parseUnsignedInt(txfInptMesB.getText());
+        supGesC = sMesCcm + (int) Integer.parseUnsignedInt(txfInptMesC.getText());
+        supGesW = sMesWcm + (int) Integer.parseUnsignedInt(txfInptMesW.getText());
+
+        txfSupPA.setText(""+supGesA);
+        txfSupPB.setText(""+supGesB);
+        txfSupPC.setText(""+supGesC);
+        txfSupPW.setText(""+supGesW);
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        double calc = calcShippingCosts(supGesA, supGesB, supGesC, supGesW);
+        if(calc==0){
+            lblOutpPrice.setVisible(false);
+            lblOutputError.setVisible(true);
+            lblOutputError.setText("der Maße sint ned rischdig");}else{
+            lblOutpPrice.setText(formatter.format(calc/100) + "");}
+
+    }
 
     @FXML
     private void calculatePackage(){
@@ -48,6 +92,10 @@ public class Controller {
             mesAcm = mesBcm = mesCcm = mesWcm = 99999999;
 
         }
+        txfSupPA.setText(txfInptMesA.getText());
+        txfSupPB.setText(txfInptMesB.getText());
+        txfSupPC.setText(txfInptMesC.getText());
+        txfSupPW.setText(txfInptMesW.getText());
 
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         lblOutputError.setVisible(false);
@@ -57,12 +105,12 @@ public class Controller {
             lblOutpPrice.setVisible(false);
             lblOutputError.setVisible(true);
             lblOutputError.setText("der Maße sint ned rischdig");}else{
-            lblOutpPrice.setText(formatter.format(calc) + "");
-        }
+        lblOutpPrice.setText(formatter.format(calc) + "");}
 
 
 
     }
+
 
     private int calcShippingCosts (int length, int height, int width, int weight) {
 
@@ -108,7 +156,7 @@ public class Controller {
             sliderVal = 100;
         }
 
-        //inptSlider.setValue(sliderVal);
+        inptSlider.setValue(sliderVal);
         return user.getPrice();
         }
 
