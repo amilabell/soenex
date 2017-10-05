@@ -23,6 +23,7 @@ public class Packet {
         this.height = height;
         this.length = length;
         this.weight = weight;
+        this.price = 0;
     }
 
     public void setPrice(int price){

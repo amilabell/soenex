@@ -57,7 +57,8 @@ public class Controller {
             lblOutpPrice.setVisible(false);
             lblOutputError.setVisible(true);
             lblOutputError.setText("der Maße sint ned rischdig");}else{
-        lblOutpPrice.setText(formatter.format(calc) + "");}
+            lblOutpPrice.setText(formatter.format(calc) + "");
+        }
 
 
 
@@ -75,9 +76,9 @@ public class Controller {
 
         packets[0] = p1;
         packets[1] = p2;
-        packets[3] = p3;
-        packets[4] = p4;
-        packets[5] = p5;
+        packets[2] = p3;
+        packets[3] = p4;
+        packets[4] = p5;
 
         int size[] = {length, height, width, weight};
         int pckS1[] = {300, 300, 150};
@@ -107,7 +108,7 @@ public class Controller {
             sliderVal = 100;
         }
 
-        inptSlider.setValue(sliderVal);
+        //inptSlider.setValue(sliderVal);
         return user.getPrice();
         }
 
