@@ -11,10 +11,14 @@ import javafx.util.Duration;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
-
+/**
+ *  Main Controller Class fyi
+ */
 public class Controller {
     @FXML
-    private TextField txfInptMesA, txfInptMesB, txfInptMesC, txfInptMesW;
+    private TextField txfInptMesA;
+    private TextField txfInptMesB;
+    private TextField txfInptMesC, txfInptMesW, txfSupPA, txfSupPB, txfSupPC, txfSupPW;
     @FXML
     private Slider inptSlider;
     @FXML
@@ -22,19 +26,22 @@ public class Controller {
     @FXML
     private SplitPane splitPane;
 
-    public  void initialize(){
+    /**
+     *
+     */
+    public void initialize() {
         inptSlider.setMax(100);
         inptSlider.setMin(0);
     }
 
     @FXML
-    private void resetSPane(){
+    private void resetSPane() {
         ScaleTransition st = new ScaleTransition(Duration.seconds(2), splitPane);
         st.setToX(100);
         st.play();
     }
-    @FXML
 
+    @FXML
     private void reset() {
         txfInptMesA.clear();
         txfInptMesB.clear();
@@ -44,18 +51,18 @@ public class Controller {
     }
 
     @FXML
-    private void addPackage(){
+    private void addPackage() {
         int sMesAcm, sMesBcm, sMesCcm, sMesWcm, supGesA, supGesB, supGesC, supGesW;
         int smallestSideCombination;
         int largestSide;
 
-        try{
+        try {
             sMesAcm = (int) Integer.parseUnsignedInt(txfSupPA.getText());
             sMesBcm = (int) Integer.parseUnsignedInt(txfSupPB.getText());
             sMesCcm = (int) Integer.parseUnsignedInt(txfSupPC.getText());
             sMesWcm = (int) Integer.parseUnsignedInt(txfSupPW.getText());
 
-        }catch (Exception e){
+        } catch (Exception e) {
             sMesAcm = sMesBcm = sMesCcm = sMesWcm = 99999999;
 
         }
@@ -98,32 +105,33 @@ public class Controller {
             }
         }
 
-        txfSupPA.setText(""+supGesA);
-        txfSupPB.setText(""+supGesB);
-        txfSupPC.setText(""+supGesC);
-        txfSupPW.setText(""+supGesW);
+        txfSupPA.setText("" + supGesA);
+        txfSupPB.setText("" + supGesB);
+        txfSupPC.setText("" + supGesC);
+        txfSupPW.setText("" + supGesW);
 
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         double calc = calcShippingCosts(supGesA, supGesB, supGesC, supGesW);
-        if(calc==0){
+        if (calc == 0) {
             lblOutpPrice.setVisible(false);
             lblOutputError.setVisible(true);
-            lblOutputError.setText("der Maße sint ned rischdig");}else{
-            lblOutpPrice.setText(formatter.format(calc/100) + "");}
+            lblOutputError.setText("der Maße sint ned rischdig");
+        } else {
+            lblOutpPrice.setText(formatter.format(calc / 100) + "");
+        }
 
     }
 
     @FXML
-    private void calculatePackage(){
+    private void calculatePackage() {
         int mesAcm, mesBcm, mesCcm, mesWcm;
 
-        try{
+        try {
             mesAcm = (int) Integer.parseUnsignedInt(txfInptMesA.getText());
             mesBcm = (int) Integer.parseUnsignedInt(txfInptMesB.getText());
             mesCcm = (int) Integer.parseUnsignedInt(txfInptMesC.getText());
             mesWcm = (int) Integer.parseUnsignedInt(txfInptMesW.getText());
-
-        }catch (Exception e){
+        } catch (Exception e) {
             mesAcm = mesBcm = mesCcm = mesWcm = 99999999;
 
         }
@@ -136,18 +144,19 @@ public class Controller {
         lblOutputError.setVisible(false);
         lblOutpPrice.setVisible(true);
         double calc = calcShippingCosts(mesAcm, mesBcm, mesCcm, mesWcm);
-        if(calc==0){
+        if (calc == 0) {
             lblOutpPrice.setVisible(false);
             lblOutputError.setVisible(true);
-            lblOutputError.setText("der Maße sint ned rischdig");}else{
-        lblOutpPrice.setText(formatter.format(calc) + "");}
-
+            lblOutputError.setText("der Maße sint ned rischdig");
+        } else {
+            lblOutpPrice.setText(formatter.format(calc / 100) + "");
+        }
 
 
     }
 
 
-    private int calcShippingCosts (int length, int height, int width, int weight) {
+    private int calcShippingCosts(int length, int height, int width, int weight) {
 
         Packet p1 = new Packet(300, 300, 150, 1000, 400);
         Packet p2 = new Packet(600, 300, 150, 2000, 450);
@@ -190,21 +199,21 @@ public class Controller {
 
         inptSlider.setValue(sliderVal);
         return user.getPrice();
-        }
+    }
 
 
     //Check if ArrayOne is smaller as ArrayTwo
-    private boolean smallerArrayCompare(int[] arrayOne, int[] arrayTwo){
+    private boolean smallerArrayCompare(int[] arrayOne, int[] arrayTwo) {
         boolean isSmaller = false;
 
-        if(arrayOne.length == arrayTwo.length) {
+        if (arrayOne.length == arrayTwo.length) {
 
             //Arrays.sort(arrayOne);
             //Arrays.sort(arrayTwo);
 
             isSmaller = true;
-            for (int i = 0; i < arrayOne.length; i++){
-                if(arrayOne[i] > arrayTwo[i]){
+            for (int i = 0; i < arrayOne.length; i++) {
+                if (arrayOne[i] > arrayTwo[i]) {
                     isSmaller = false;
                 }
             }

@@ -13,11 +13,11 @@ public class Packet {
 
     /**
      *
-     * @param width
-     * @param height
-     * @param length
-     * @param weight
-     * @param price
+     * @param width of the package in
+     * @param height of the package
+     * @param length of the package
+     * @param weight of the package
+     * @param price if it is a package category, you can set there the price, then the values above are boundary values
      */
    public Packet(int width, int height, int length, int weight, int price){
         this.width = width;
@@ -28,7 +28,7 @@ public class Packet {
     }
 
     /**
-     *
+     * Look at the other fnc. there is a good explanation about everything you need to know
      * @param width
      * @param height
      * @param length
@@ -43,7 +43,7 @@ public class Packet {
     }
 
     /**
-     *
+     * It sets the price...
      * @param price
      */
     public void setPrice(int price){
@@ -51,7 +51,7 @@ public class Packet {
     }
 
     /**
-     *
+     * Returns the weight...
      * @return
      */
     public int getWeight(){
@@ -59,15 +59,15 @@ public class Packet {
     }
 
     /**
-     *
-     * @return
+     * will return the price
+     * @return the price in cent int
      */
     public int getPrice(){
         return (int) price;
     }
 
     /**
-     *
+     * returns all diameters in an array
      * @return
      */
     public int[] getPackageDiameters(){
