@@ -34,6 +34,7 @@ public class Controller {
         st.play();
     }
     @FXML
+
     private void reset() {
         txfInptMesA.clear();
         txfInptMesB.clear();
@@ -44,7 +45,9 @@ public class Controller {
 
     @FXML
     private void addPackage(){
-        int sMesAcm, sMesBcm, sMesCcm, sMesWcm, supGesA,supGesB,supGesC,supGesW;
+        int sMesAcm, sMesBcm, sMesCcm, sMesWcm, supGesA, supGesB, supGesC, supGesW;
+        int smallestSideCombination;
+        int largestSide;
 
         try{
             sMesAcm = (int) Integer.parseUnsignedInt(txfSupPA.getText());
@@ -58,10 +61,42 @@ public class Controller {
         }
 
 
+
         supGesA = sMesAcm + (int) Integer.parseUnsignedInt(txfInptMesA.getText());
         supGesB = sMesBcm + (int) Integer.parseUnsignedInt(txfInptMesB.getText());
         supGesC = sMesCcm + (int) Integer.parseUnsignedInt(txfInptMesC.getText());
         supGesW = sMesWcm + (int) Integer.parseUnsignedInt(txfInptMesW.getText());
+
+        smallestSideCombination = sMesAcm + (int) Integer.parseUnsignedInt(txfInptMesA.getText());
+        supGesA = smallestSideCombination;
+        if(sMesBcm>(int) Integer.parseUnsignedInt(txfInptMesB.getText())){
+            supGesB = sMesBcm;
+        }else{
+            supGesB = (int) Integer.parseUnsignedInt(txfInptMesB.getText());
+        }
+        if(sMesCcm>(int) Integer.parseUnsignedInt(txfInptMesC.getText())){
+            supGesC = sMesCcm;
+        }else{
+            supGesC = (int) Integer.parseUnsignedInt(txfInptMesC.getText());
+        }
+        if(sMesBcm + (int) Integer.parseUnsignedInt(txfInptMesB.getText())<smallestSideCombination){
+            smallestSideCombination = sMesBcm + (int) Integer.parseUnsignedInt(txfInptMesB.getText());
+            supGesB = smallestSideCombination;
+            if(sMesAcm>(int) Integer.parseUnsignedInt(txfInptMesA.getText())){
+                supGesA = sMesAcm;
+            }else{
+                supGesA = (int) Integer.parseUnsignedInt(txfInptMesA.getText());
+            }
+        }
+        if(sMesCcm + (int) Integer.parseUnsignedInt(txfInptMesC.getText())<smallestSideCombination){
+            smallestSideCombination = sMesCcm + (int) Integer.parseUnsignedInt(txfInptMesC.getText());
+            supGesC = smallestSideCombination;
+            if(sMesAcm>(int) Integer.parseUnsignedInt(txfInptMesA.getText())){
+                supGesA = sMesAcm;
+            }else{
+                supGesA = (int) Integer.parseUnsignedInt(txfInptMesA.getText());
+            }
+        }
 
         txfSupPA.setText(""+supGesA);
         txfSupPB.setText(""+supGesB);
@@ -129,9 +164,6 @@ public class Controller {
         packets[4] = p5;
 
         int size[] = {length, height, width, weight};
-        int pckS1[] = {300, 300, 150};
-        int pckS2[] = {600, 300, 150};
-        int pckS3[] = {1200, 600, 600};
 
         int sliderVal = 0;
 
